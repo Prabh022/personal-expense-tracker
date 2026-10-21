@@ -1,0 +1,15 @@
+# Build outputs
+*.o
+*.obj
+*.exe
+*.out
+*.ilk
+*.pdb
+expense_tracker
+
+# Local data file created at runtime
+expenses.dat
+
+# IDE files
+.vs/
+.vscode/
