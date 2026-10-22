@@ -13,7 +13,8 @@ int main() {
         printf("3. Edit Expense\n");
         printf("4. Delete Expense\n");
         printf("5. Summary Report\n");
-        printf("6. Exit\n");
+        printf("6. Category Summary\n");
+        printf("7. Exit\n");
         printf("Enter your choice: ");
         scanf("%d", &choice);
 
@@ -23,7 +24,8 @@ int main() {
         case 3: editExpense(); break;
         case 4: deleteExpense(); break;
         case 5: showSummary(); break;
-        case 6: return 0;
+        case 6: showCategorySummary(); break;
+        case 7: return 0;
         default: printf("Invalid choice. Try again.\n");
         }
     }

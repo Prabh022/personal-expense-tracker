@@ -115,3 +115,40 @@ void showSummary() {
     printf("Highest expense: $%.2f\n", max);
     printf("Lowest expense: $%.2f\n", min);
 }
+
+void showCategorySummary() {
+    Expense expenses[MAX_EXPENSES];
+    int count = loadExpenses(expenses);
+
+    if (count == 0) {
+        printf("No expenses recorded.\n");
+        return;
+    }
+
+    float grandTotal = 0;
+    for (int i = 0; i < count; i++) {
+        grandTotal += expenses[i].amount;
+    }
+
+    printf("\n--- Spending by Category ---\n");
+    for (int i = 0; i < count; i++) {
+        int seenBefore = 0;
+        for (int j = 0; j < i; j++) {
+            if (strcmp(expenses[j].category, expenses[i].category) == 0) {
+                seenBefore = 1;
+                break;
+            }
+        }
+        if (seenBefore) continue;
+
+        float categoryTotal = 0;
+        for (int j = 0; j < count; j++) {
+            if (strcmp(expenses[j].category, expenses[i].category) == 0) {
+                categoryTotal += expenses[j].amount;
+            }
+        }
+        float share = (grandTotal > 0) ? (categoryTotal / grandTotal) * 100 : 0;
+        printf("%s: $%.2f (%.1f%% of total)\n",
+            expenses[i].category, categoryTotal, share);
+    }
+}

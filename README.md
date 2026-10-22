@@ -11,6 +11,8 @@ local binary data file.
 - View all expenses
 - Edit or delete an expense by ID
 - Summary report: total spent, highest expense, lowest expense
+- Category summary: total spent per category, with each category's share of
+  overall spending
 - Persistent storage in `expenses.dat` (binary file, created automatically
   the first time you add an expense)
 
@@ -36,7 +38,8 @@ Then use the on-screen menu:
 3. Edit Expense
 4. Delete Expense
 5. Summary Report
-6. Exit
+6. Category Summary
+7. Exit
 ```
 
 ## Sample output (trimmed from an actual run)
