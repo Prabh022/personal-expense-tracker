@@ -17,5 +17,6 @@ void editExpense();
 void deleteExpense();
 void showSummary();
 void showCategorySummary();
+void searchExpenses();
 
 #endif

@@ -1,10 +1,30 @@
 // expense.c
 #define _CRT_SECURE_NO_WARNINGS
 
+#include <ctype.h>
 #include <stdio.h>
 #include <string.h>
 #include "expense.h"
 #include "storage.h"
+
+/* Case-insensitive substring test: returns 1 if needle appears in
+   haystack ignoring case, 0 otherwise. An empty needle matches. */
+static int containsIgnoreCase(const char *haystack, const char *needle) {
+    size_t needleLen = strlen(needle);
+    if (needleLen == 0) return 1;
+    for (const char *p = haystack; *p != '\0'; p++) {
+        size_t i;
+        for (i = 0; i < needleLen; i++) {
+            if (p[i] == '\0') return 0;
+            if (tolower((unsigned char)p[i]) !=
+                tolower((unsigned char)needle[i])) {
+                break;
+            }
+        }
+        if (i == needleLen) return 1;
+    }
+    return 0;
+}
 
 void addExpense() {
     Expense expenses[MAX_EXPENSES];
@@ -150,5 +170,29 @@ void showCategorySummary() {
         float share = (grandTotal > 0) ? (categoryTotal / grandTotal) * 100 : 0;
         printf("%s: $%.2f (%.1f%% of total)\n",
             expenses[i].category, categoryTotal, share);
+    }
+}
+
+void searchExpenses() {
+    Expense expenses[MAX_EXPENSES];
+    int count = loadExpenses(expenses);
+
+    char query[20];
+    printf("Enter category to search: ");
+    scanf("%19s", query);
+
+    printf("\n--- Matching Expenses ---\n");
+    int found = 0;
+    for (int i = 0; i < count; i++) {
+        if (containsIgnoreCase(expenses[i].category, query)) {
+            printf("ID: %d | %s | $%.2f | %s\n  %s\n",
+                expenses[i].id, expenses[i].category,
+                expenses[i].amount, expenses[i].date,
+                expenses[i].description);
+            found = 1;
+        }
+    }
+    if (!found) {
+        printf("No expenses found in category '%s'.\n", query);
     }
 }

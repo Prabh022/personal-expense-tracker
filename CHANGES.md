@@ -38,3 +38,17 @@ file is empty. Verified: built clean with
 Transport $4.00, and Food $7.50 it printed Food: $20.00 (83.3% of
 total) and Transport: $4.00 (16.7% of total); the existing summary
 report still showed the correct $24.00 total.
+
+## Update — October 30, 2026
+
+**Feature: search by category.** Added `searchExpenses()` to
+`expense.c` (menu option 7; Exit moved to 8). It prompts for a
+category and lists every matching expense in the same format as View
+Expenses, matching case-insensitively on a substring of the category
+name, and reports "No expenses found in category '...'" when nothing
+matches. Verified: built clean with
+`gcc -std=c11 -Wall -Wextra`, then in a scripted run with Food $12.50,
+Transport $4.00, and Food $7.50 it printed only the two Food expenses
+for "foo", matched both Food expenses for "FOOD", and printed the
+no-match message for "zzz"; view-all and the category summary were
+unchanged, and the data file in the upload folder was untouched.
