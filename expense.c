@@ -196,3 +196,27 @@ void searchExpenses() {
         printf("No expenses found in category '%s'.\n", query);
     }
 }
+
+void searchExpensesByDate() {
+    Expense expenses[MAX_EXPENSES];
+    int count = loadExpenses(expenses);
+
+    char query[11];
+    printf("Enter date to search (YYYY-MM-DD, or YYYY-MM for a whole month): ");
+    scanf("%10s", query);
+
+    printf("\n--- Matching Expenses ---\n");
+    int found = 0;
+    for (int i = 0; i < count; i++) {
+        if (containsIgnoreCase(expenses[i].date, query)) {
+            printf("ID: %d | %s | $%.2f | %s\n  %s\n",
+                expenses[i].id, expenses[i].category,
+                expenses[i].amount, expenses[i].date,
+                expenses[i].description);
+            found = 1;
+        }
+    }
+    if (!found) {
+        printf("No expenses found on date '%s'.\n", query);
+    }
+}

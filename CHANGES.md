@@ -52,3 +52,18 @@ Transport $4.00, and Food $7.50 it printed only the two Food expenses
 for "foo", matched both Food expenses for "FOOD", and printed the
 no-match message for "zzz"; view-all and the category summary were
 unchanged, and the data file in the upload folder was untouched.
+
+## Update — November 5, 2026
+
+**Feature: search by date.** Added `searchExpensesByDate()` to
+`expense.c` (menu option 8; Exit moved to 9). It prompts for a date
+and lists every matching expense in the same format as View Expenses,
+matching on a substring of the stored YYYY-MM-DD date, so entering
+just YYYY-MM lists every expense in that month; it reports "No
+expenses found on date '...'" when nothing matches. Verified: built
+clean with `gcc -std=c11 -Wall -Wextra`, then in a scripted run with
+Food $12.50 on 2026-10-05, Transport $4.00 on 2026-10-06, and Food
+$7.50 on 2026-11-02 it printed only the two October expenses for
+"2026-10", only the Food $12.50 expense for "2026-10-05", and the
+no-match message for "2026-12-01"; view-all and the category search
+were unchanged, and the data file in the upload folder was untouched.

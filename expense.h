@@ -18,5 +18,6 @@ void deleteExpense();
 void showSummary();
 void showCategorySummary();
 void searchExpenses();
+void searchExpensesByDate();
 
 #endif

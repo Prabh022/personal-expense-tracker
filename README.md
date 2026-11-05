@@ -14,6 +14,8 @@ local binary data file.
 - Category summary: total spent per category, with each category's share of
   overall spending
 - Search by category: case-insensitive partial match on the category name
+- Search by date: partial match on the date (YYYY-MM-DD); entering YYYY-MM
+  lists every expense in that month
 - Persistent storage in `expenses.dat` (binary file, created automatically
   the first time you add an expense)
 
@@ -41,7 +43,8 @@ Then use the on-screen menu:
 5. Summary Report
 6. Category Summary
 7. Search by Category
-8. Exit
+8. Search by Date
+9. Exit
 ```
 
 ## Sample output (trimmed from an actual run)

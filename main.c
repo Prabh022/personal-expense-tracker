@@ -15,7 +15,8 @@ int main() {
         printf("5. Summary Report\n");
         printf("6. Category Summary\n");
         printf("7. Search by Category\n");
-        printf("8. Exit\n");
+        printf("8. Search by Date\n");
+        printf("9. Exit\n");
         printf("Enter your choice: ");
         scanf("%d", &choice);
 
@@ -27,7 +28,8 @@ int main() {
         case 5: showSummary(); break;
         case 6: showCategorySummary(); break;
         case 7: searchExpenses(); break;
-        case 8: return 0;
+        case 8: searchExpensesByDate(); break;
+        case 9: return 0;
         default: printf("Invalid choice. Try again.\n");
         }
     }
